@@ -18,15 +18,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
 //Route::get('/login', \App\Http\Controllers\Auth\LoginController::class);
 
 Route::group(['middleware' => [],'prefix' => 'v1'], function () {
     Route::post('/login', 'App\Http\Controllers\Auth\UserController@login');
     Route::post('/register', 'App\Http\Controllers\Auth\UserController@register');
     Route::post('/logout', 'App\Http\Controllers\Auth\UserController@logout');
+    Route::get('/user/all', 'App\Http\Controllers\Auth\UserController@index');
 });
 
-
+/* @TODO: Integrate protected routes like user all between others */
 Route::group(['middleware' => ['auth:sanctum'],'prefix' => 'v1'], function () {
    // Route::post('/login', \App\Http\Controllers\Auth\LoginController::class);
 });

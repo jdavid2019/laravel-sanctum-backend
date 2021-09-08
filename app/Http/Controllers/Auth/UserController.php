@@ -17,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $data = User::all();
+        return response()->json(['data' => $data], 200);
     }
 
 
@@ -44,13 +45,13 @@ class UserController extends Controller
 
         $request->session()->regenerate();
 
-       // return response()->json("ok",201);
-        return response()->json(
-            [
-                'token' => $request->user()->createToken($request->name)->plainTextToken,
-                'message' => 'Success'
-            ]
-        );
+       return response()->json(null,201);
+        // return response()->json(
+        //     [
+        //        'token' => $request->user()->createToken($request->name)->plainTextToken,
+        //        'message' => 'Success'
+        //    ]
+        // );
     }
 
     public function register(Request $request) {
